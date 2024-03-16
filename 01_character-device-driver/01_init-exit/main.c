@@ -5,15 +5,13 @@
 #define DRIVER_VERS   "1.0"
 
 /* Constructor */
-static int  __init chdev_init(void)
-{
+static int  __init chdev_init(void) {
     pr_info("Hello world kernel module\n");
     return 0;
 }
 
 /* Destructor */
-static void  __exit chdev_exit(void)
-{
+static void  __exit chdev_exit(void) {
     pr_info("Goodbye\n");
 }
 

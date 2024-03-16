@@ -10,8 +10,7 @@ struct m_foo_dev {
 } mdev;
 
 /* Constructor */
-static int  __init chdev_init(void)
-{
+static int  __init chdev_init(void) {
     /* 1.0 Dynamic allocating device number (cat /proc/devices) */
     if (alloc_chrdev_region(&mdev.dev_num, 0, 1, "m_cdev") < 0) {
 	    pr_err("Failed to alloc chrdev region\n");
@@ -28,8 +27,7 @@ static int  __init chdev_init(void)
 }
 
 /* Destructor */
-static void  __exit chdev_exit(void)
-{
+static void  __exit chdev_exit(void) {
     unregister_chrdev_region(mdev.dev_num, 1);              /* 1.0 */
     pr_info("Goodbye\n");
 }

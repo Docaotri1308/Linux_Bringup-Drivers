@@ -8,8 +8,7 @@
 uint32_t __iomem *gpio1_base_addr;
 
 /* Constructor */
-static int __init gpio_init(void)
-{
+static int __init gpio_init(void) {
     gpio1_base_addr = ioremap(GPIO1_ADDR_BASE, GPIO1_ADDR_SIZE);
     if(!gpio1_base_addr)
         return -ENOMEM;
@@ -23,8 +22,7 @@ static int __init gpio_init(void)
 }
 
 /* Destructor */
-static void __exit gpio_exit(void)
-{
+static void __exit gpio_exit(void) {
     *(gpio1_base_addr + GPIO_CLEARDATAOUT_OFFSET / 4) |= GPIO1_19;
     iounmap(gpio1_base_addr);
 

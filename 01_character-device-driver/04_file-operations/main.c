@@ -31,36 +31,31 @@ static struct file_operations fops =
 };
 
 /* This function will be called when we open the Device file */
-static int m_open(struct inode *inode, struct file *file)
-{
+static int m_open(struct inode *inode, struct file *file) {
     pr_info("System call open() called...!!!\n");
     return 0;
 }
 
 /* This function will be called when we close the Device file */
-static int m_release(struct inode *inode, struct file *file)
-{
+static int m_release(struct inode *inode, struct file *file) {
     pr_info("System call close() called...!!!\n");
     return 0;
 }
 
 /* This function will be called when we read the Device file */
-static ssize_t m_read(struct file *filp, char __user *user_buf, size_t size, loff_t *offset)
-{
+static ssize_t m_read(struct file *filp, char __user *user_buf, size_t size, loff_t *offset) {
     pr_info("System call read() called...!!!\n");
     return 0;
 }
 
 /* This function will be called when we write the Device file */
-static ssize_t m_write(struct file *filp, const char __user *user_buf, size_t size, loff_t *offset)
-{
+static ssize_t m_write(struct file *filp, const char __user *user_buf, size_t size, loff_t *offset) {
     pr_info("System call write() called...!!!\n");
     return size;
 }
 
 /* Constructor */
-static int  __init chdev_init(void)
-{
+static int  __init chdev_init(void) {
     /* 1.0 Dynamic allocating device number (cat /proc/devices) */
     if (alloc_chrdev_region(&mdev.dev_num, 0, 1, "m-cdev") < 0) {
 	    pr_err("Failed to alloc chrdev region\n");
@@ -107,8 +102,7 @@ rm_device_numb:
 }
 
 /* Destructor */
-static void  __exit chdev_exit(void)
-{
+static void  __exit chdev_exit(void) {
     cdev_del(&mdev.m_cdev);                                 /* 4.0 */
     device_destroy(mdev.m_class, mdev.dev_num);             /* 3.0 */
     class_destroy(mdev.m_class);                            /* 2.0 */
