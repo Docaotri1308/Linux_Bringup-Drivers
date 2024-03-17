@@ -21,8 +21,7 @@ static int      m_release(struct inode *inode, struct file *file);
 static ssize_t  m_read(struct file *filp, char __user *user_buf, size_t size,loff_t * offset);
 static ssize_t  m_write(struct file *filp, const char *user_buf, size_t size, loff_t * offset);
 
-static struct file_operations fops =
-{
+static struct file_operations fops = {
     .owner      = THIS_MODULE,
     .read       = m_read,
     .write      = m_write,

@@ -17,8 +17,7 @@ static const struct of_device_id gpiod_dt_ids[] = {
     { /* sentinel */ }
 };
 
-static int my_pdrv_probe(struct platform_device *pdev)
-{
+static int my_pdrv_probe(struct platform_device *pdev) {
     struct device *dev = &pdev->dev;
     gpio1_19 = gpiod_get(dev, "led51", GPIOD_OUT_LOW);
     gpiod_set_value(gpio1_19, HIGH);
@@ -27,8 +26,7 @@ static int my_pdrv_probe(struct platform_device *pdev)
     return 0;
 }
 
-static int my_pdrv_remove(struct platform_device *pdev)
-{
+static int my_pdrv_remove(struct platform_device *pdev) {
     gpiod_set_value(gpio1_19, LOW);
     gpiod_put(gpio1_19);
 
